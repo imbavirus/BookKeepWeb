@@ -44,7 +44,8 @@ const BookPage = () => {
       queryClient.invalidateQueries({ queryKey: ['books'] });
     },
     onError: (err, deletedBookId) => {
-      enqueueSnackbar(`Error deleting book ${deletedBookId}: ${err.message}`, { variant: 'error' });
+      const title = books?.find((book) => book.id === Number(deletedBookId))?.title;
+      enqueueSnackbar(`Error deleting book with Title: ${title}: ${err.message}`, { variant: 'error' });
     },
   });
 
