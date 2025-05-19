@@ -16,13 +16,23 @@ import {
 import { fetchBookById } from '../../services/bookService';
 import type { IBook } from '../../@types/book/book';
 
+/**
+ * Displays detailed information about a single book.
+ * Fetches book data based on the ID from the URL.
+ * Handles loading, error, and not-found states.
+ * @returns {JSX.Element} The rendered book information page.
+ */
 const BookInfo = () => {
-  const { id } = useParams<{ id : string }>(); // Get the 'id' parameter
+  /** The book ID extracted from the URL parameters. */
+  const { id } = useParams<{ id : string }>();
 
   const { data: book, isLoading, isError, error, refetch } = useQuery<IBook, Error>({
     queryKey: ['book', id],
     queryFn: () => {
       if (!id) {
+        // This condition is primarily for type safety and defensive programming.
+        // React Router should ensure `id` is present if this route component is rendered.
+        // However, explicitly handling this case makes the query function more robust.
         // Should not happen if the route is matched correctly, but good for type safety
         return Promise.reject(new Error('Book ID is missing'));
       }

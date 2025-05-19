@@ -3,16 +3,31 @@ import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+/**
+ * Navbar component for the application.
+ * Displays the application title, navigation links, and a conditional back button.
+ * @returns {JSX.Element} The rendered Navbar component.
+ */
 export const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Determine if we are on a page where a "Back" button should be shown
+  /**
+   * Determines whether the "Back" button should be displayed based on the current route.
+   * The back button is shown on:
+   * - The new book page (`/books/new`)
+   * - The edit book page (`/books/edit/:id`)
+   * - The individual book details page (`/books/:id`, excluding 'new' or 'edit' subpaths)
+   */
   const showBackButton =
     location.pathname.startsWith('/books/new') ||
     location.pathname.match(/^\/books\/edit\/.+/) || // Matches /books/edit/:id
     location.pathname.match(/^\/books\/(?!new|edit)[^/]+$/); // Matches /books/:id
 
+  /**
+   * Handles the click event for the back button.
+   * Navigates to the previous page in the browser's history.
+   */
   const handleBack = () => {
     navigate(-1); // Go back to the previous page in history
   };

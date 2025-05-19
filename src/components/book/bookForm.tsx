@@ -17,14 +17,43 @@ import {
   CardMedia,
 } from '@mui/material';
 
+/**
+ * Props for the BookForm component.
+ */
 interface BookFormProps {
+  /**
+   * Callback function invoked when the form is submitted with valid data.
+   * @param values The validated form values.
+   */
   onSubmit : (values : IBookFormValues) => void;
+  /**
+   * Optional initial values to populate the form. Used for editing existing books.
+   */
   defaultValues ?: IBook;
+  /**
+   * Optional flag to indicate if a submission or data loading is in progress.
+   * Disables form fields and shows loading indicators when true.
+   * @default false
+   */
   isLoading ?: boolean;
+  /**
+   * Optional text to display on the submit button.
+   * @default 'Submit'
+   */
   submitButtonText ?: string;
+  /**
+   * Optional callback function invoked when the cancel button is clicked.
+   * If not provided, the cancel button will not be rendered.
+   */
   onCancel ?: () => void;
 }
 
+/**
+ * A reusable form component for creating or editing book details.
+ * It handles form state, validation, and submission.
+ * @param {BookFormProps} props - The props for the BookForm component.
+ * @returns {JSX.Element} The rendered book form.
+ */
 export const BookForm = ({
   onSubmit,
   defaultValues,
@@ -32,15 +61,19 @@ export const BookForm = ({
   submitButtonText = 'Submit',
   onCancel,
 } : BookFormProps) => {
-
   const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<IBookFormValues>({
     defaultValues: BookFormValues(defaultValues),
     resolver: zodResolver(bookFormSchema),
     mode: 'onChange',
   });
 
+  /** Watches the value of the 'coverImageUrl' field for live preview. */
   const watchedCoverImageUrl = watch('coverImageUrl');
 
+  /**
+   * Effect to reset the form with new defaultValues when they change.
+   * This is useful when the form is used for editing and the book data is loaded asynchronously.
+   */
   useEffect(() => {
       reset(BookFormValues(defaultValues));
   }, [defaultValues, reset]);

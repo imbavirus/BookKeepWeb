@@ -2,7 +2,13 @@ import { Box, Button, Container, Typography, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 
+/**
+ * HomePage component serves as the main landing page for the BookKeep application.
+ * It provides a welcome message and navigation options to view existing books or add a new book.
+ * @returns {JSX.Element} The rendered HomePage component.
+ */
 const HomePage = () => {
+  /** Hook to programmatically navigate to different routes. */
   const navigate = useNavigate();
 
   return (

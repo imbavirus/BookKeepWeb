@@ -8,15 +8,28 @@ import { type IBookFormValues } from '../../../@types/book/bookFormValues'; // A
 import { forEach } from 'lodash-es';
 import type { IApiError } from '../../../@types/apiError';
 
+/**
+ * Page component for creating a new book.
+ * It utilizes the `BookForm` component for data input and handles the submission
+ * to create a new book entry via the `createBook` service.
+ */
 export default function BookNewPage() {
   const [formSubmitting, setFormSubmitting] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
+  /**
+   * Handles the closing of the form, typically by navigating back to the books list.
+   */
   const onFormClose = () => {
     navigate('/books'); // Navigate to books list
   };
 
+  /**
+   * Handles the submission of the new book form.
+   * It creates a new book using the `createBook` service and shows appropriate notifications.
+   * @param {IBookFormValues} values - The validated form values for the new book.
+   */
   const handleFormSubmit = async (values : IBookFormValues) => {
     setFormSubmitting(true);
     console.log('Form submitted for new book:', values);

@@ -8,6 +8,11 @@ import type { IBookFormValues } from '../../../@types/book/bookFormValues';
 import { forEach } from 'lodash-es';
 import type { IApiError } from '../../../@types/apiError';
 
+/**
+ * Page component for editing an existing book.
+ * It fetches the book data based on the ID from the URL, allows modification through `BookForm`, and handles the update submission.
+ */
+
 export default function BookEditPage() {
   const { id } = useParams<{ id : string }>(); // Get the 'id' parameter for book
   const [book, setBook] = useState<IBook | undefined>();
@@ -16,6 +21,10 @@ export default function BookEditPage() {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
+  /**
+   * Effect hook to load the book data when the component mounts or the `id` parameter changes.
+   * Navigates away if the ID is missing or if the book fails to load.
+   */
   useEffect(() => {
     const loadBook = async () => {
       if (!id) {
@@ -51,10 +60,18 @@ export default function BookEditPage() {
     loadBook();
   }, [id, navigate, enqueueSnackbar]);
 
+  /**
+   * Handles the closing of the form, typically by navigating back to the books list.
+   */
   const onFormClose = () => {
     navigate('/books'); // Navigate to books list
   };
 
+  /**
+   * Handles the submission of the book form.
+   * It updates the book data via the `updateBook` service and shows appropriate notifications.
+   * @param {IBookFormValues} values - The validated form values.
+   */
   const handleFormSubmit = async (values : IBookFormValues) => {
     setFormSubmitting(true);
     enqueueSnackbar('Updating book...', { variant: 'info' });

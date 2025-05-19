@@ -35,8 +35,19 @@ import { useState } from 'react';
 import { fetchBooks, deleteBook } from '../../services/bookService';
 import type { IBook } from '../../@types/book/book';
 
+/**
+ * Defines the possible view modes for displaying the list of books.
+ * 'table': Displays books in a tabular format.
+ * 'card': Displays books as individual cards.
+ */
 type ViewMode = 'table' | 'card';
 
+/**
+ * BookPage component displays a list of books.
+ * It allows users to view books in either a table or card format,
+ * add new books, edit existing ones, and delete books.
+ * It handles data fetching, loading states, error states, and user interactions.
+ */
 const BookPage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -49,8 +60,14 @@ const BookPage = () => {
     refetchOnWindowFocus: true,
   });
 
+  /** State to manage the current view mode ('table' or 'card'). */
   const [viewMode, setViewMode] = useState<ViewMode>('card');
 
+  /**
+   * Handles the change in view mode.
+   * @param {MouseEvent<HTMLElement>} _event - The mouse event that triggered the change.
+   * @param {ViewMode | null} newViewMode - The new view mode selected by the user. If null, the mode is not changed.
+   */
   const handleViewModeChange = (_event : MouseEvent<HTMLElement>, newViewMode : ViewMode | null) => {
     if (newViewMode !== null) {
       setViewMode(newViewMode);
@@ -58,6 +75,12 @@ const BookPage = () => {
   };
 
   const deleteMutation = useMutation({
+    /**
+     * The function that performs the delete operation.
+     * @param {string} bookId - The ID of the book to delete.
+     * @returns {Promise<any>} A promise that resolves when the book is deleted.
+     *                       The actual return type depends on `deleteBook` service.
+     */
     mutationFn: deleteBook,
     onSuccess: (deletedBookResponse) => { // The response from deleteBook is { id: string }
       // Find the book by its ID. Note: book.id is number, deletedBookResponse.id is string
@@ -72,6 +95,11 @@ const BookPage = () => {
     },
   });
 
+  /**
+   * Handles the deletion of a book.
+   * Prompts the user for confirmation before proceeding with the deletion.
+   * @param {number} id - The numeric ID of the book to be deleted.
+   */
   const handleDeleteBook = (id : number) => {
     const bookToDelete = books?.find(book => book.id === id);
     if (window.confirm(`Are you sure you want to delete the book "${bookToDelete?.title || 'this book'}"?`)) {
