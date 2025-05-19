@@ -10,7 +10,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import routes from '~react-pages';
 import { SnackbarProvider } from 'notistack';
-import Navbar from './components/layout/Navbar';
+import Navbar from './components/layout/navbar';
 
 // Create a client instance
 const queryClient = new QueryClient({

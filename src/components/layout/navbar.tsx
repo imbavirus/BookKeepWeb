@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Typography, Button, Box, IconButton } from '@mui/material';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
-import BookIcon from '@mui/icons-material/Book';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export const Navbar = () => {
@@ -32,7 +32,7 @@ export const Navbar = () => {
           sx={{ textTransform: 'none', justifyContent: 'flex-start', p: 0, '&:hover': { backgroundColor: 'transparent' } }}
           aria-label='Home'
         >
-          <BookIcon sx={{ mr: 1 }} /> {/* Adjusted margin for icon within button */}
+          <AutoStoriesIcon sx={{ mr: 1 }} /> {/* Adjusted margin for icon within button */}
           <Typography variant='h6' component='div'>
             BookKeep
           </Typography>
