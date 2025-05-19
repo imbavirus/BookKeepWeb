@@ -69,10 +69,15 @@ const BookInfo = () => {
             <Card>
               <CardMedia
                 component='img'
-                height='auto'
-                image={book.coverImageUrl || 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png'} // Placeholder if no image
+                height='200'
+                image={book.coverImageUrl || 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png'}
                 alt={book.title}
-                sx={{ objectFit: 'contain', maxHeight: 450 }} // Ensures image fits well
+                  sx={{
+                    width: '100%', // Ensure it takes the full width of the card
+                    aspectRatio: '2/3', // Enforce a portrait book shape (width/height)
+                    objectFit: 'contain', // Ensures the whole image fits, letterboxed if necessary
+                    backgroundColor: (theme) => theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[200], // Shows the defined aspect ratio box
+                  }}
               />
             </Card>
             <CardContent>

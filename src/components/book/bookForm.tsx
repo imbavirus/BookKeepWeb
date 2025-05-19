@@ -14,6 +14,7 @@ import {
   Grid,
   Card,
   Typography,
+  CardMedia,
 } from '@mui/material';
 
 interface BookFormProps {
@@ -137,12 +138,21 @@ export const BookForm = ({
                     placeholder='https://example.com/image.png'
                 />
                 <Grid container spacing={2} direction={'column'}>
-                    <Typography variant='h6' component='h2' gutterBottom>{'Preview:'}</Typography>
-                    <img
-                        alt='Cover Preview'
-                        src={watchedCoverImageUrl ?? undefined}
-                        style={{ maxHeight: '300px', maxWidth: '100%', objectFit: 'contain' }}
+                    <Typography variant='h6' component='h2' gutterBottom>{'Preview:'}</Typography>                    
+                    <Card>
+                    <CardMedia
+                        component='img'
+                        height='200'
+                        image={watchedCoverImageUrl || 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png'}
+                        alt={'Book Cover'}
+                        sx={{
+                            width: '100%', // Ensure it takes the full width of the card
+                            aspectRatio: '2/3', // Enforce a portrait book shape (width/height)
+                            objectFit: 'contain', // Ensures the whole image fits, letterboxed if necessary
+                            backgroundColor: (theme) => theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[200], // Shows the defined aspect ratio box
+                        }}
                     />
+                    </Card>
                 </Grid>
             </Grid>
 
