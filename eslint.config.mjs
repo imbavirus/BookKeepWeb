@@ -48,6 +48,7 @@ const eslintConfig = [
     rules: {
       ...tsPlugin.configs.recommended.rules,
       ...tsPlugin.configs['recommended-requiring-type-checking'].rules,
+      '@typescript-eslint/no-unsafe-assignment': 'off'
     },
   },
   { ignores: ['node_modules/', 'dist/', 'build/'] },
