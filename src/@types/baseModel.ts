@@ -7,6 +7,7 @@ export const baseModelSchema = z.object({
     guid: z.string().uuid().default(v4),
     createdOn: z.string().optional(),
     updatedOn: z.string().optional(),
+    isActive: z.boolean().default(true),
 });
 
 // Infer the type from the schema
