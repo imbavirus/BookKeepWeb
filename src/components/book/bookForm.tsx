@@ -161,7 +161,7 @@ export const BookForm = ({
                 <TextField
                     fullWidth
                     id='coverImageUrl'
-                    label='Cover Image URL (Optional)'
+                    label='Cover Image URL (Optional) (will pull from openlibrary.org if not provided)'
                     type='url'
                     {...register('coverImageUrl')}
                     error={!!errors.coverImageUrl}
