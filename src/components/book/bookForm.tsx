@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, type JSX } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type IBookFormValues, bookFormSchema, BookFormValues } from '../../@types/book/bookFormValues';
@@ -60,7 +60,7 @@ export const BookForm = ({
   isLoading = false,
   submitButtonText = 'Submit',
   onCancel,
-} : BookFormProps) => {
+} : BookFormProps) : JSX.Element => {
   const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<IBookFormValues>({
     defaultValues: BookFormValues(defaultValues),
     resolver: zodResolver(bookFormSchema),
