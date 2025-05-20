@@ -11,6 +11,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import routes from '~react-pages';
 import { SnackbarProvider } from 'notistack';
 import Navbar from './components/layout/navbar';
+import { CircularProgress } from '@mui/material';
 // Create a client instance
 /**
  * React Query client instance with global default options.
@@ -32,7 +33,7 @@ const queryClient = new QueryClient({
  */
 function App() {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<CircularProgress size={20} color='inherit' />}>
       {useRoutes(routes)}
     </Suspense>
   );

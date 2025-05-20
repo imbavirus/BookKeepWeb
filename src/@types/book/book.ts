@@ -17,7 +17,7 @@ export const bookSchema = baseModelSchema.extend({
     description: z.string().max(2000, 'Description cannot be longer than 2000 characters.').optional().nullable(),
     publicationYear: z.number().int()
         .min(1000, 'Please enter a valid publication year.')
-        .max(new Date().getFullYear() + 5, 'Please enter a valid publication year.')
+        .max(new Date().getFullYear() + 6, 'Please enter a valid publication year.')
         .optional().nullable(),
     genre: z.string().max(50, 'Genre cannot be longer than 50 characters.').optional().nullable(),
     coverImageUrl: z.string().url('Please enter a valid URL for the cover image.').max(500, 'Cover image URL cannot be longer than 500 characters.').optional().nullable(),

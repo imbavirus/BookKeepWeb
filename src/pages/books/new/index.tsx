@@ -5,7 +5,7 @@ import { Book } from '../../../@types/book/book'; // Adjusted path
 import { createBook } from '../../../services/bookService'; // Adjusted path
 import { BookForm } from '../../../components/book/bookForm'; // Adjusted path
 import { type IBookFormValues } from '../../../@types/book/bookFormValues'; // Adjusted path
-import { forEach } from 'lodash-es';
+import { forEach, isArray, isObject } from 'lodash-es';
 import type { IApiError } from '../../../@types/apiError';
 
 /**
@@ -35,30 +35,54 @@ export default function BookNewPage() {
     console.log('Form submitted for new book:', values);
     enqueueSnackbar('Creating book...', { variant: 'info' });
     try {
+      console.log('Creating book with values:', values);
       // The Book factory function converts IBookFormValues to IBook
       // createBook expects the IBook object (or a DTO derived from it)
       const newBook = await createBook(Book(values));
+      console.log('Created book:',newBook);
       if (newBook) {
-        onFormClose();
-        enqueueSnackbar('Book created successfully.', { variant: 'success' });
+        console.log('Book created successfully:', newBook);
+        // onFormClose();
+        // enqueueSnackbar('Book created successfully.', { variant: 'success' });
       } else {
         // This case might not be hit if createBook throws on failure
         console.error('Failed to create book: No data returned');
         enqueueSnackbar('Failed to create book.', { variant: 'error' });
       }
     } catch (error : unknown) {
-      const apiError = error as IApiError;
-      if (apiError.errors) {
-          forEach(apiError.errors, (value, key) => {
-            value.forEach(x => {
-              console.log(`Validation Error: ${key}: ${x}`, { variant: 'error' });
-              enqueueSnackbar(`Validation Error: ${key}: ${x}`, { variant: 'error' });
-          });
-        });
+      console.error('Error caught in handleFormSubmit:', error); // Log the raw error object
 
+      // Check if it's an instance of our custom ApiError
+      if (error && typeof error === 'object' && 'name' in error && error.name === 'ApiError') {
+        const apiError = error as unknown as IApiError; // Cast to IApiError
+        enqueueSnackbar(apiError.message || 'Failed to create book. Please check details.', { variant: 'error' });
+
+        if (apiError.errors) {
+          if (isObject(apiError.errors) && !isArray(apiError.errors)) {
+            // Case: Record<string, string[]> e.g., { fieldName: ["error1", "error2"] }
+            forEach(apiError.errors as Record<string, string[]>, (messages, field) => {
+              if (isArray(messages)) {
+                messages.forEach(msg => {
+                  console.error(`Validation Error (${field}): ${msg}`);
+                  enqueueSnackbar(`${field}: ${msg}`, { variant: 'error' });
+                });
+              }
+            });
+          } else if (isArray(apiError.errors)) {
+            // Case: string[] e.g., ["Global error 1", "Global error 2"]
+            (apiError.errors as string[]).forEach(msg => {
+              console.error(`Server Error: ${msg}`);
+              enqueueSnackbar(msg, { variant: 'error' });
+            });
+          }
+        } else {
+          // No detailed errors, the main message from enqueueSnackbar above is primary.
+          console.warn('ApiError caught, but no detailed "errors" field was present.');
+        }
       } else {
-        console.error('Error submitting form:', apiError.message);
-        enqueueSnackbar(`Failed to create book: ${apiError.message}`, { variant: 'error' });
+        // Fallback for non-ApiError types
+        console.error('An unexpected error occurred:', error);
+        enqueueSnackbar('An unexpected error occurred. Please try again.', { variant: 'error' });
       }
     } finally {
       setFormSubmitting(false);

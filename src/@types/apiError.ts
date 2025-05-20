@@ -4,13 +4,15 @@
  * This interface is typically used to type the JSON body of an error response.
  */
 export interface IApiError {
+  /** The HTTP status code associated with the error (e.g., 400, 404, 500). */
+  statusCode : number;
   /** A general error message describing the issue. */
   message : string;
   /**
    * An optional object containing field-specific validation errors.
    * The keys are typically the field names, and the values are the error messages for those fields.
    */
-  errors : { [key : string] : Array<string> };
+  errors ?: { [key : string] : Array<string> };
 }
 
 /**
