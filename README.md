@@ -115,17 +115,17 @@ yarn preview
 
 ```
 src/
-├── @types/          # TypeScript type definitions
-├── components/      # Reusable React components
-├── pages/          # Page components and file-based routing
-│   ├── index.tsx   # Home page route (/)
-│   ├── books/      # Book-related routes
+├── @types/           # TypeScript type definitions
+├── components/       # Reusable React components
+├── pages/            # Page components and file-based routing
+│   ├── index.tsx        # Home page route (/)
+│   ├── books/           # Book-related routes
 │   │   ├── index.tsx       # Books list route (/books)
 │   │   ├── new/            # New book route (/books/new)
 │   │   ├── [id].tsx        # Book details route (/books/:id)
 │   │   └── edit/[id].tsx   # Edit book route (/books/edit/:id)
-├── services/       # API services and business logic
-└── main.tsx        # Application entry point
+├── services/         # API services and business logic
+└── main.tsx          # Application entry point
 ```
 
 The project uses `vite-plugin-pages` for file-based routing, which automatically generates routes based on the file structure in the `pages` directory. This provides a clean, convention-based routing approach similar to Next.js.
