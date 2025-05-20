@@ -11,4 +11,10 @@ export default defineConfig({
     }),
     react(),
   ],
+  preview: {
+    allowedHosts: [
+      'bookkeep-web.home.infernos.co.za',
+      // You can add more allowed hosts here if needed
+    ],
+  },
 });
