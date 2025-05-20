@@ -6,12 +6,13 @@ import {
 } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
+import { SnackbarProvider, closeSnackbar } from 'notistack';
+import { CircularProgress, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 import routes from '~react-pages';
-import { SnackbarProvider } from 'notistack';
 import Navbar from './components/layout/navbar';
-import { CircularProgress } from '@mui/material';
+
 // Create a client instance
 /**
  * React Query client instance with global default options.
@@ -53,7 +54,23 @@ app.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Navbar />
-        <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+        <SnackbarProvider 
+          maxSnack={3} 
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+          autoHideDuration={3000}
+          hideIconVariant={false}
+          preventDuplicate
+          dense
+          action={(snackbarId) => (
+            <IconButton
+              onClick={() => closeSnackbar(snackbarId)}
+              sx={{ color: 'white' }}
+              size='small'
+            >
+              <CloseIcon />
+            </IconButton>
+          )}
+        >
           <App />
         </SnackbarProvider>
         <ReactQueryDevtools initialIsOpen={false} />
