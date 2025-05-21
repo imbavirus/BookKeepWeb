@@ -4,7 +4,7 @@ BookKeep is a modern web application for managing your personal book collection.
 
 🔗 **[Live Demo](https://bookkeep-web.home.infernos.co.za/)**
 
-## Features
+## ✨ Features
 
 - 📚 Manage your book collection with ease
 - 🎨 Beautiful, responsive UI with both card and table views
@@ -21,11 +21,11 @@ BookKeep is a modern web application for managing your personal book collection.
   - Description
   - Cover Image (automatically fetched from OpenLibrary.org if not provided)
 
-## Demo
+## 🌐 Demo
 
-Try out BookKeep without installing! Visit our [live demo](https://bookkeep-web.home.infernos.co.za/) to explore all features and see the application in action.
+Try out BookKeep Web without installing! Visit our [live demo](https://bookkeep-web.home.infernos.co.za/) to explore all features and see the application in action.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Frontend Framework**: React 19
 - **Language**: TypeScript
@@ -38,17 +38,17 @@ Try out BookKeep without installing! Visit our [live demo](https://bookkeep-web.
 - **Build Tool**: Vite
 - **Package Manager**: npm/yarn
 
-## Prerequisites
+## 📋 Prerequisites
 
 - Node.js (v18 or higher recommended)
 - npm or yarn
 - A running instance of the BookKeep API server (available at [BookKeepAPI](https://github.com/imbavirus/BookKeepAPI))
 
-## Related Repositories
+## 🔗 Related Repositories
 
 - [BookKeepAPI](https://github.com/imbavirus/BookKeepAPI) - The backend API server for BookKeep
 
-## Environment Setup
+## ⚙️ Environment Setup
 
 A `.env.example` file is provided in the repository as a template. Copy it to create your own `.env` file:
 
@@ -64,7 +64,7 @@ VITE_API_BASE_URL=http://localhost:5001
 
 Make sure to never commit your actual `.env` file to version control.
 
-## Installation
+## 🚀 Installation
 
 1. Clone the repository:
 ```bash
@@ -93,7 +93,7 @@ yarn dev
 
 The application will be available at `http://localhost:5173`
 
-## Building for Production
+## 🏭 Building for Production
 
 To create a production build:
 
@@ -111,7 +111,7 @@ npm run preview
 yarn preview
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 src/
@@ -130,7 +130,7 @@ src/
 
 The project uses `vite-plugin-pages` for file-based routing, which automatically generates routes based on the file structure in the `pages` directory. This provides a clean, convention-based routing approach similar to Next.js.
 
-## Key Features Implementation
+## 🎯 Key Features Implementation
 
 ### Book Management
 
@@ -156,7 +156,7 @@ The project uses `vite-plugin-pages` for file-based routing, which automatically
 - Confirmation dialogs for destructive actions
 - Automatic book cover images from OpenLibrary.org when not manually provided
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -164,7 +164,7 @@ The project uses `vite-plugin-pages` for file-based routing, which automatically
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
+## 📄 License
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0) - see the [LICENSE](LICENSE) file for details.
 
@@ -182,7 +182,7 @@ Under the following conditions:
 
 For more information about the GPL-3.0 license, visit [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
-## Acknowledgments
+## 👏 Acknowledgments
 
 - Material-UI for the beautiful component library
 - TanStack Query for excellent data management
