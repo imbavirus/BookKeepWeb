@@ -23,7 +23,7 @@ BookKeep is a modern web application for managing your personal book collection.
 
 ## 🌐 Demo
 
-Try out BookKeep Web without installing! Visit our [live demo](https://bookkeep-web.home.infernos.co.za/) to explore all features and see the application in action.
+Try out BookKeep without installing! Visit our [live demo](https://bookkeep-web.home.infernos.co.za/) to explore all features and see the application in action.
 
 ## 🛠️ Tech Stack
 
@@ -155,6 +155,20 @@ The project uses `vite-plugin-pages` for file-based routing, which automatically
 - Toast notifications for user feedback
 - Confirmation dialogs for destructive actions
 - Automatic book cover images from OpenLibrary.org when not manually provided
+
+## 📸 Screenshots
+
+### List View
+![List View](https://i.gyazo.com/0c3759a05682622ab79c03e799e345ec.png)
+
+### Grid View
+![Grid View](https://i.gyazo.com/6e1597ffaa449e44a14bec5e079aa974.jpg)
+
+### Book Form
+![Book Form](https://i.gyazo.com/187a149ab4de244907e2c3499f0ffd96.png)
+
+### Book Details
+![Book Details](https://i.gyazo.com/36b99e40ea15dbcdbb61c1195542d8ae.png)
 
 ## 🤝 Contributing
 
