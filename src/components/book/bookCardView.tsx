@@ -1,4 +1,3 @@
-
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import {
   IconButton,
@@ -71,16 +70,48 @@ const BookCardView = ({ books, deleteMutation, handleDeleteBook } : IBookCardVie
                         variant='h6'
                         component='div'
                         noWrap
+                        sx={{
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            width: '100%'
+                        }}
                     >
                         {book.title}
                     </Typography>
-                    <Typography variant='body2' color='text.secondary'>
+                    <Typography 
+                        variant='body2' 
+                        color='text.secondary'
+                        noWrap
+                        sx={{
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            width: '100%'
+                        }}
+                    >
                         Author: {book.author}
                     </Typography>
-                    <Typography variant='body2' color='text.secondary'>
+                    <Typography 
+                        variant='body2' 
+                        color='text.secondary'
+                        noWrap
+                        sx={{
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            width: '100%'
+                        }}
+                    >
                         ISBN: {book.isbn || 'N/A'}
                     </Typography>
-                    <Typography variant='body2' color='text.secondary'>
+                    <Typography 
+                        variant='body2' 
+                        color='text.secondary'
+                        noWrap
+                        sx={{
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            width: '100%'
+                        }}
+                    >
                         Year: {book.publicationYear || 'N/A'}
                     </Typography>
                 </CardContent>
